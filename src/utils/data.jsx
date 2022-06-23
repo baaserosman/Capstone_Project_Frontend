@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 //! ******* READ DATA *******
 
 export const useFetch =() => {
-    const [blogs, setBlogs] = useState([]);
+    const [blogs, setBlogs] = useState();
     const [isLoading, setIsLoading] = useState(false);
     
     useEffect(() => {
@@ -15,7 +15,9 @@ export const useFetch =() => {
       axios
         .get("https://tranquil-brook-25431.herokuapp.com/api/blogs/")
         .then((res) => setBlogs(res.data))
-        .catch((err) => console.log(err));      
+        .catch((err) => console.log(err));     
+      
+      setIsLoading(false);
     }, []);
   return {isLoading, blogs}
   }

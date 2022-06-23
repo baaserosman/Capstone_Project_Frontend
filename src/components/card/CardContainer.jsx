@@ -4,6 +4,7 @@ import CardItem from "./CardItem";
 
 const CardContainer = () => {
   const { blogs, isLoading } = useFetch();
+  console.log(blogs)
  
 
   return (
