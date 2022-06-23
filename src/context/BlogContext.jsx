@@ -19,11 +19,13 @@ export const initialValues = {
 };
 
 const BlogContextProvider = ({ children }) => {
-  
+  const [createBlog, setCreateBlog] = useState(initialValues);
   const [blogs, setBlogs] = useState();
 
   return (
-    <CardContext.Provider value={{  blogs, setBlogs }}>
+    <CardContext.Provider
+      value={{ blogs, setBlogs, createBlog, setCreateBlog }}
+    >
       {children}
     </CardContext.Provider>
   );

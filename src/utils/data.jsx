@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 // import { successNote, toastError, toastLogout } from "./customToastify";
 // import { successNote } from "../utils/customToastify";
 
-//! ******* READ DATA *******
+
+
+//! ******* READ and WRITE *******
 
 export const useFetch =() => {
     const [blogs, setBlogs] = useState();
@@ -19,7 +21,51 @@ export const useFetch =() => {
       
       setIsLoading(false);
     }, []);
+
+    const createBlog = (userId, addBlog) => {
+      const data = {
+        title: "",
+        content: "",
+        image: "",
+        author: "",
+        status: "",
+        slug: "",
+      };
+      const postBlog = () => {
+        axios
+          .post("https://jsonplaceholder.typicode.com/posts", { data })
+          .then((res) => setBlogs([...blogs, res.data.data]));
+      };
+      console.log(addBlog, "Blog added.");
+    };
+
   return {isLoading, blogs}
+
+  
+  
   }
-    
+  
+//! ******* CREATE *******
+
+// const createBlog = (userId, addBlog) => {
+  
+//   const data = {
+//     "title": "",
+//     "content": "",
+//     "image": "",
+//     "author": "",
+//     "status": "",
+//     "slug": "",
+//   };
+//   const postBlog = () => {
+//     axios
+//       .post("https://jsonplaceholder.typicode.com/posts", { data })
+//       .then((res) => setBlogs([...blogs, res.data.data]));
+//   };
+//   console.log(addBlog, "Blog added.");
+
+// };
+
+
+
 
