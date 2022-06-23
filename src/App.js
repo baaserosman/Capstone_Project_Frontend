@@ -1,12 +1,13 @@
-
 import './App.css';
-import Blogs from './components/Blogs';
+import CardContextProvider from "./context/BlogContext";
+import AppRouter from "./router/Router";
 
 function App() {
   return (
     <div className="App">
-      {/* <h1>Hello World</h1> */}
-      <Blogs />
+      <CardContextProvider>
+        <AppRouter />
+      </CardContextProvider>
     </div>
   );
 }
