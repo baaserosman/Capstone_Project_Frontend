@@ -7,7 +7,8 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
+import CommentIcon from "@mui/icons-material/Comment";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { useNavigate } from "react-router-dom";
 
 import { AccountCircle } from "@mui/icons-material";
@@ -15,8 +16,7 @@ import "./card.css";
 import { Box } from "@mui/system";
 
 const CardItem = ({ blog }) => {
-  const { image, title, email, content  } = blog;
-  // console.log(card);
+  const { image, title, author, content, comment_count, view_count, like_count  } = blog;
   const navigate = useNavigate();
   // const { currentUser } = useContext(AuthContext);
 
@@ -74,18 +74,22 @@ const CardItem = ({ blog }) => {
             //   currentUser && navigate("/profile");
             // }}
           >
-          <AccountCircle />
+            <AccountCircle />
           </IconButton>
-          {email}
+          {author}
         </Typography>
       </CardContent>
 
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+        <IconButton size="small" aria-label="like">
+          <FavoriteIcon /> <span>{like_count}</span>
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton size="small" aria-label="view">
+          <RemoveRedEyeIcon /> <span>{view_count}</span>
+        </IconButton>
+        <IconButton size="small" aria-label="comment">
+          <CommentIcon />
+          <span>{comment_count}</span>
         </IconButton>
       </CardActions>
     </Card>
