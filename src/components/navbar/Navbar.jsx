@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import { useNavigate } from "react-router-dom";
-// import { AuthContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../auth/Authentication";
 // import { logOut } from "../../auth/firebase";
 
 export default function MenuAppBar() {
