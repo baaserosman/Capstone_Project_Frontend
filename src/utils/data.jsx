@@ -17,6 +17,7 @@ export const UserStateChecker = (setCurrentUser) => {
     } else {
       setCurrentUser(false);
     }
+    console.log(user.key)
     
 };
 
