@@ -4,26 +4,38 @@ import { useEffect, useState } from "react";
 // import { successNote, toastError, toastLogout } from "./customToastify";
 // import { successNote } from "../utils/customToastify";
 
+//*  ////////////////////////////
+//! ******* REGISTER *******
+//*  ////////////////////////////
+export const createUser = () => {
+  var myHeaders = new Headers();
+  myHeaders.append("", "");
+  myHeaders.append(
+    "Cookie",
+    "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
+);
 
-export const UserStateChecker = (setCurrentUser) => {
-  const[user, setUser] = useState([]);
-  axios
-    .get("https://jsonplaceholder.typicode.com/users")
-    .then((res) => setUser(res.data))
-    .catch((err) => console.log(err));
-  
-    if (user) {
-      setCurrentUser(user);
-    } else {
-      setCurrentUser(false);
-    }
-    console.log(user.key)
-    
-};
+var raw = JSON.stringify({
+  username: "user@example.com",
+  first_name: "string",
+  last_name: "string",
+  password: "string",
+  password2: "string",
+});
+
+fetch(
+  "https://tranquil-brook-25431.herokuapp.com/users/register/",
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log("error", error)); 
+}
 
 
-//! ******* READ and WRITE *******
-
+//*  ////////////////////////////
+//! ******* READ and WRITE ******
+//*  ////////////////////////////
 export const useFetch =() => {
     const [blogs, setBlogs] = useState();
     const [postBlog, setPostBlog]=useState();
