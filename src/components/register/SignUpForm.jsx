@@ -16,9 +16,9 @@ const SignUpForm = (props) => {
   }, [currentUser]);
 
   const handleRegister = () => {
-    createUser(values.email, values.password);
+    createUser(values.username, values.password);
     // navigate("/");
-    console.log(values.email, values.password);
+    console.log(values.username, values.password);
   };
 
   return (
@@ -28,10 +28,10 @@ const SignUpForm = (props) => {
           <TextField
             id="email"
             label="email"
-            name="email"
             variant="outlined"
             type="email"
-            value={values.email}
+            name="username"
+            value={values.username}
             onChange={handleChange}
             onBlur={handleBlur}
             helperText={touched.email && errors.email}
@@ -54,6 +54,21 @@ const SignUpForm = (props) => {
             fullWidth
           />
         </Grid>
+        {/* <Grid item xs={12}>
+          <TextField
+            id="password2"
+            label="Confirm Password"
+            name="password2"
+            variant="outlined"
+            type="password"
+            value={values.password2}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.password2 && errors.password2}
+            error={touched.password2 && Boolean(errors.password2)}
+            fullWidth
+          />
+        </Grid> */}
 
         <Grid item xs={12}>
           <Button
@@ -64,17 +79,6 @@ const SignUpForm = (props) => {
             sx={{ bgcolor: "#056582", fontWeight: "bold", boxShadow: "" }}
           >
             REGISTER
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            sx={{ bgcolor: "#056582", fontWeight: "bold" }}
-            
-          >
-            CONTINUE WITH GOOGLE
           </Button>
         </Grid>
       </Grid>

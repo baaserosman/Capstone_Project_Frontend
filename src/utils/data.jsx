@@ -10,10 +10,10 @@ import { useEffect, useState } from "react";
 export const createUser = () => {
   var myHeaders = new Headers();
   myHeaders.append("", "");
-  myHeaders.append(
-    "Cookie",
-    "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
-);
+//   myHeaders.append(
+//     "Cookie",
+//     "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
+// );
 
 var raw = JSON.stringify({
   username: "user@example.com",
@@ -37,6 +37,40 @@ fetch(
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.log("error", error)); 
+}
+
+
+//*  ////////////////////////////
+//! ******* LOGIN *******
+//*  ////////////////////////////
+export const signIn =() => {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append(
+    "Cookie",
+    "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
+  );
+
+  var raw = JSON.stringify({
+    username: "string",
+    email: "user@example.com",
+    password: "string",
+  });
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://tranquil-brook-25431.herokuapp.com/users/auth/login/",
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
 }
 
 

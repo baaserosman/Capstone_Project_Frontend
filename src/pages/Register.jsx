@@ -57,14 +57,14 @@ const Register = () => {
 
         <Formik
           initialValues={{
-            email: "",
+            username: "",
             password: "",
-            passwordConfirm: "",
+            password2: "",
           }}
           validationSchema={SignUpValidationSchema}
           onSubmit={(values, actions) => {
             alert(`
-             email: ${values.email}
+             username: ${values.username}
              password: ${values.password}
             `);
             actions.resetForm();
