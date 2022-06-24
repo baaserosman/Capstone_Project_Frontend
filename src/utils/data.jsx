@@ -23,6 +23,13 @@ var raw = JSON.stringify({
   password2: "string",
 });
 
+var requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow",
+};
+
 fetch(
   "https://tranquil-brook-25431.herokuapp.com/users/register/",
   requestOptions

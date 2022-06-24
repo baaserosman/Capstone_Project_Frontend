@@ -3,12 +3,12 @@ import { Form } from "formik";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../utils/data";
-import { AuthContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../context/AuthContext";
 
 const SignUpForm = (props) => {
   const { values, handleChange, handleBlur, errors, touched } = props;
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     currentUser ? navigate("/") : navigate("/register");
@@ -72,7 +72,7 @@ const SignUpForm = (props) => {
             variant="contained"
             fullWidth
             sx={{ bgcolor: "#056582", fontWeight: "bold" }}
-            onClick={handleGoogleSingIn}
+            
           >
             CONTINUE WITH GOOGLE
           </Button>
