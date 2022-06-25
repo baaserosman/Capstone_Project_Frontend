@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 //*  ////////////////////////////
 export const createUser = () => {
   var myHeaders = new Headers();
-  myHeaders.append("", "");
+  myHeaders.append("Content-Type", "application/json");
 //   myHeaders.append(
 //     "Cookie",
 //     "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
@@ -36,7 +36,7 @@ fetch(
 )
   .then((response) => response.text())
   .then((result) => console.log(result))
-  .catch((error) => console.log("error", error)); 
+  .catch((error) => console.log("error Osman", error)); 
 }
 
 

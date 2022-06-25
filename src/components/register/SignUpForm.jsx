@@ -16,8 +16,8 @@ const SignUpForm = (props) => {
   }, [currentUser]);
 
   const handleRegister = () => {
-    createUser(values.username, values.password);
-    // navigate("/");
+    createUser(values.username, values.password, values.password2);
+    navigate("/");
     console.log(values.username, values.password);
   };
 
@@ -54,7 +54,7 @@ const SignUpForm = (props) => {
             fullWidth
           />
         </Grid>
-        {/* <Grid item xs={12}>
+        <Grid item xs={12}>
           <TextField
             id="password2"
             label="Confirm Password"
@@ -68,7 +68,7 @@ const SignUpForm = (props) => {
             error={touched.password2 && Boolean(errors.password2)}
             fullWidth
           />
-        </Grid> */}
+        </Grid>
 
         <Grid item xs={12}>
           <Button

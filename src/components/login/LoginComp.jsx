@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn, signUpWithGoogle } from "../../auth/firebase";
+import { signIn, signUpWithGoogle } from "../../utils/data";
 import { AuthContext } from "../../context/AuthContext";
 import { Grid, TextField, Button, Box } from "@mui/material";
-import { successNote } from "../../utils/customToastify";
+// import { successNote } from "../../utils/customToastify";
 
 const LoginComp = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
   useEffect(() => {
@@ -16,14 +16,11 @@ const LoginComp = () => {
   }, [currentUser]);
 
   const handleLogin = () => {
-    signIn(email, password);
-    // console.log(currentUser);
+    signIn(username, password);
+    console.log(currentUser);
   };
 
-  const handleGoogleSingIn = () => {
-    signUpWithGoogle();
-    currentUser && navigate("/");
-  };
+
 
   return (
     <Box>
@@ -32,11 +29,11 @@ const LoginComp = () => {
           <TextField
             id="email"
             label="email"
-            name="email"
+            name="username"
             variant="outlined"
             type="email"
             required
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             fullWidth
           />
         </Grid>
@@ -64,17 +61,7 @@ const LoginComp = () => {
             LOGIN
           </Button>
         </Grid>
-        <Grid item xs={12}>
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            sx={{ bgcolor: "#056582", fontWeight: "bold" }}
-            onClick={handleGoogleSingIn}
-          >
-            CONTINUE WITH GOOGLE
-          </Button>
-        </Grid>
+        
       </Grid>
     </Box>
   );
