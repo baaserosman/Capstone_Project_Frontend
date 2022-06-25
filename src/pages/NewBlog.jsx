@@ -2,9 +2,11 @@ import { Box, TextField, Typography, Button } from "@mui/material";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toastNewBlog } from "../utils/customToastify";
+import {BlogContext} from "../utils/blogContext";
+import { AuthContext } from "../context/AuthContext";
 
 const NewBlog = () => {
-  // const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { createBlog } = useContext(BlogContext);
   const { setCreateBlog } = useContext(BlogContext);
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ const NewBlog = () => {
   //   setStatus(event.target.value);
   // };
 
-    const writeBlog = { ...createCard,  email: email, date: dates };
+    const writeBlog = { ...createBlog,  email: email, date: dates };
     console.log(email);
     // setAddCard({ ...addCard, id: id, email: email, date: dates });
     createBlog(writeBlog);

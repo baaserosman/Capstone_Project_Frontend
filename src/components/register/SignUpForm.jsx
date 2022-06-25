@@ -17,7 +17,7 @@ const SignUpForm = (props) => {
 
   const handleRegister = () => {
     createUser(values.username, values.password, values.password2);
-    navigate("/");
+    // navigate("/");
     console.log(values.username, values.password);
   };
 
