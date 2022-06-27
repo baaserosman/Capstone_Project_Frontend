@@ -18,6 +18,8 @@ export const initialValues = {
   "like_count": "",
 };
 
+export const BlogContext = createContext();
+
 const BlogContextProvider = ({ children }) => {
   // const [createBlog, setCreateBlog] = useState(initialValues);
   const [blogs, setBlogs] = useState();

@@ -1,8 +1,8 @@
 import { Box, TextField, Typography, Button } from "@mui/material";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { toastNewBlog } from "../utils/customToastify";
-import {BlogContext} from "../utils/blogContext";
+import { toastNewBlog } from "../utils/customTostify";
+import {BlogContext} from "../context/BlogContext";
 import { AuthContext } from "../context/AuthContext";
 
 const NewBlog = () => {
