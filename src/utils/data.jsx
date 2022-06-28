@@ -78,6 +78,35 @@ export const signIn =(username,password) => {
     .catch((error) => console.log("error", error));
 }
 
+//*  ////////////////////////////
+//! ******* LOGOUT *******
+//*  ////////////////////////////
+
+export const logout = () => {
+  var myHeaders = new Headers();
+  myHeaders.append(
+    "Cookie",
+    "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
+  );
+
+  var raw = "";
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://tranquil-brook-25431.herokuapp.com/users/auth/logout/",
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
+}
+
 
 //*  ////////////////////////////
 //! ******* READ  ******
