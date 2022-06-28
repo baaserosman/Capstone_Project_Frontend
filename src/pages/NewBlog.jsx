@@ -1,9 +1,9 @@
-import { Box, TextField, Typography, Button } from "@mui/material";
+import { Box, TextField, Typography, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { toastNewBlog } from "../utils/customTostify";
 import {BlogContext} from "../context/BlogContext";
 import { AuthContext } from "../context/AuthContext";
+import { toastNewBlog } from "../utils/customToastify";
 
 const NewBlog = () => {
   const { currentUser } = useContext(AuthContext);
@@ -118,7 +118,7 @@ const NewBlog = () => {
             }}
             name="title"
             onChange={handleChange}
-            value={addBlog.title}
+            value={createBlog.title}
           />
           <TextField
             id="outlined-multiline-static"
@@ -133,7 +133,7 @@ const NewBlog = () => {
             }}
             name="text"
             onChange={handleChange}
-            value={addBlog.content}
+            value={createBlog.content}
           />
           <TextField
             id="outlined-basic"
@@ -146,14 +146,14 @@ const NewBlog = () => {
             }}
             name="image"
             onChange={handleChange}
-            value={addBlog.image}
+            value={createBlog.image}
           />
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Status</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={status}
+              value={createBlog.status}
               label="Status"
               onChange={handleChange}
             >

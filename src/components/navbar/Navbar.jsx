@@ -10,8 +10,7 @@ import Menu from "@mui/material/Menu";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-
-// import { logOut } from "../../auth/firebase";
+import { logout } from "../../utils/data";
 
 export default function MenuAppBar() {
   const navigate = useNavigate();
@@ -69,7 +68,7 @@ export default function MenuAppBar() {
               onClose={handleClose}
             >
               {" "}
-              {currentUser ? (
+              {/* {currentUser ? ( */}
                 <div>
                   {" "}
                   <MenuItem
@@ -90,7 +89,7 @@ export default function MenuAppBar() {
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
-                      logOut();
+                      logout();
                       handleClose();
                       navigate("/");
                     }}
@@ -98,7 +97,7 @@ export default function MenuAppBar() {
                     Logout
                   </MenuItem>{" "}
                 </div>
-              ) : (
+              {/* ) : ( */}
                 <div>
                   <MenuItem
                     onClick={() => {
@@ -117,7 +116,7 @@ export default function MenuAppBar() {
                     Register
                   </MenuItem>
                 </div>
-              )}
+              {/* )} */}
             </Menu>
           </div>
         </Toolbar>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signIn, signUpWithGoogle } from "../../utils/data";
 import { AuthContext } from "../../context/AuthContext";
 import { Grid, TextField, Button, Box } from "@mui/material";
-// import { successNote } from "../../utils/customToastify";
+import { successNote } from "../../utils/customToastify";
 
 const LoginComp = () => {
   const navigate = useNavigate();
@@ -13,15 +13,13 @@ const LoginComp = () => {
 
   useEffect(() => {
     currentUser && navigate("/");
+    console.log(currentUser);
   }, [currentUser]);
 
   const handleLogin = () => {
     signIn(username, password);
     console.log(currentUser);
   };
-
-
-
   return (
     <Box>
       <Grid container spacing={4}>
