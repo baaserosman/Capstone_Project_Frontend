@@ -16,6 +16,8 @@ const NewBlog = () => {
     setCreateBlog({ ...createBlog, [name]: value });
   };
   const handleSubmit = (e) => {
+    createBlog(title, content, image, status, setCreateBlog)
+
     e.preventDefault();
 
     // const id = new Date().getTime();

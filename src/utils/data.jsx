@@ -146,7 +146,6 @@ export const logout = (setCurrentUser) => {
 //*  ////////////////////////////
 export const useFetch = () => {
   const [blogs, setBlogs] = useState();
-  const [postBlog, setPostBlog] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -166,42 +165,33 @@ export const useFetch = () => {
 //! ******* WRITE  ******
 //*  ////////////////////////////
 
-export const createBlog = (title, content, image, status) => {
-    var myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      "Token 574b9d67980b72e587a0a53c4b997b90f6e160ce"
-    );
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append(
-      "Cookie",
-      "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
-    );
+export const createBlog = (title, content, image, status, setCreateBlog) => {
+  var myHeaders = new Headers();
+  var token = sessionStorage.getItem("token");
+  myHeaders.append("Authorization", `Token ${token.key}`);
+  myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-      title: title,
-      content: content,
-      image: image,
-      // author: author,
-      status: status,
-      // slug: slug,
-    });
+  var raw = JSON.stringify({
+    title: title,
+    content: content,
+    image: image,
+    status: status,
+    // author: author,
+    // slug: slug,
+  });
 
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
 
-    fetch(
-      "https://tranquil-brook-25431.herokuapp.com/api/blogs/",
-      requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-}
+  fetch("https://tranquil-brook-25431.herokuapp.com/api/blogs/", requestOptions)
+    .then((response) => response.text())
+    .then((result) => setCreateBlog(result))
+    .catch((error) => console.log("error", error));
+};
 
 
 

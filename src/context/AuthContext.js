@@ -6,8 +6,6 @@ export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
-  
-  // const [token, setToken] = useState();
   console.log(currentUser)
 
   useEffect(() => {
