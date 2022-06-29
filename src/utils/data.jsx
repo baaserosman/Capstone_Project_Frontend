@@ -37,29 +37,23 @@ fetch(
 )
   .then((response) => response.text())
   .then((result) => console.log(result))
-  .catch((error) => console.log("error Osman", error)); 
+  .catch((error) => console.log("error", error)); 
 }
 
 
 //*  ////////////////////////////
 //! ******* LOGIN *******
 //*  ////////////////////////////
-export const signIn =(username,password) => {
+export const signIn =(username,password, setCurrentUser) => {
   var myHeaders = new Headers();
-  myHeaders.append(
-    "Authorization",
-    "Token 9c1e3b1ae9019fb03af6aa50da77d1a39c396ef5"
-  );
+ 
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append(
-    "Cookie",
-    "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
-  );
-
+  
   var raw = JSON.stringify({
     username: username,
     // email: "user@example.com",
     password: password,
+  
   });
 
   var requestOptions = {
@@ -74,16 +68,52 @@ export const signIn =(username,password) => {
     requestOptions
   )
     .then((response) => response.text())
-    .then((result) => console.log(result))
+    .then((result) => {setCurrentUser(result); sessionStorage.setItem("token", result);})
     .catch((error) => console.log("error", error));
 }
+
+
+//*  ////////////////////////////
+//! ******* USER *******
+//*  ////////////////////////////
+export const userStateChecker = (setCurrentUser, token) => {
+
+  var myHeaders = new Headers();
+  var token = sessionStorage.getItem("token");
+
+  myHeaders.append(
+    "Authorization",
+    `Token ${token.key}`
+  );
+ 
+  var raw = "";
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://tranquil-brook-25431.herokuapp.com/users/current-user",
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((result) =>
+      result.id ? setCurrentUser(result) : setCurrentUser(false)
+    )
+    .catch((error) => console.log("error", error));
+    
+};
 
 //*  ////////////////////////////
 //! ******* LOGOUT *******
 //*  ////////////////////////////
 
-export const logout = () => {
-  var myHeaders = new Headers();
+export const logout = (setCurrentUser) => {
+  var myHeaders = new Headers(); 
+
   myHeaders.append(
     "Cookie",
     "csrftoken=AsyrPF0OaNTbOpTwT1yUHPPutEurOPmdnyGPYMY2z88BizkeLoafkFadnioS68ge; sessionid=1wlpzgc8vi350ylaaj8ultlg02nv7wge"
@@ -103,7 +133,10 @@ export const logout = () => {
     requestOptions
   )
     .then((response) => response.text())
-    .then((result) => console.log(result))
+    .then((result) => {
+      setCurrentUser(false);
+      sessionStorage.setItem("token", "");
+    })
     .catch((error) => console.log("error", error));
 }
 

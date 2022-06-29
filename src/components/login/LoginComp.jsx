@@ -7,7 +7,7 @@ import { successNote } from "../../utils/customToastify";
 
 const LoginComp = () => {
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
@@ -17,7 +17,7 @@ const LoginComp = () => {
   }, [currentUser]);
 
   const handleLogin = () => {
-    signIn(username, password);
+    signIn(username, password, setCurrentUser);
     console.log(currentUser);
   };
   return (

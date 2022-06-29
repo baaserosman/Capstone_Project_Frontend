@@ -14,7 +14,7 @@ import { logout } from "../../utils/data";
 
 export default function MenuAppBar() {
   const navigate = useNavigate();
-  const { currentUser } = React.useContext(AuthContext);
+  const { currentUser, setCurrentUser } = React.useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -68,7 +68,7 @@ export default function MenuAppBar() {
               onClose={handleClose}
             >
               {" "}
-              {/* {currentUser ? ( */}
+              {currentUser ? (
                 <div>
                   {" "}
                   <MenuItem
@@ -89,7 +89,7 @@ export default function MenuAppBar() {
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
-                      logout();
+                      logout(setCurrentUser);
                       handleClose();
                       navigate("/");
                     }}
@@ -97,7 +97,7 @@ export default function MenuAppBar() {
                     Logout
                   </MenuItem>{" "}
                 </div>
-              {/* ) : ( */}
+              ) : (
                 <div>
                   <MenuItem
                     onClick={() => {
@@ -116,7 +116,7 @@ export default function MenuAppBar() {
                     Register
                   </MenuItem>
                 </div>
-              {/* )} */}
+              )}
             </Menu>
           </div>
         </Toolbar>
