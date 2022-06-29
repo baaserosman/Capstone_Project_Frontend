@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { userStateChecker } from "../utils/data";
+
 
 
 export const AuthContext = createContext();
