@@ -150,6 +150,7 @@ export const useFetch = () => {
 
   useEffect(() => {
     setIsLoading(true);
+    
     axios
       .get("https://tranquil-brook-25431.herokuapp.com/api/blogs/")
       .then((res) => setBlogs(res.data))
