@@ -7,8 +7,7 @@ import { toastNewBlog } from "../utils/customToastify";
 
 const NewBlog = () => {
   const { currentUser } = useContext(AuthContext);
-  const { createBlog } = useContext(BlogContext);
-  const { setCreateBlog } = useContext(BlogContext);
+  const { createBlog, setCreateBlog} = useContext(BlogContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,27 +18,18 @@ const NewBlog = () => {
     e.preventDefault();
 
     // const id = new Date().getTime();
-    const email = currentUser?.email;
+    // const email = currentUser?.email;
 
-    const date = new Date();
-    const dates = [
-      date.getDate(),
-      " ",
-      date.toLocaleString("default", { month: "long" }),
-      " ",
-      date.getFullYear(),
-    ];
+    // const date = new Date();
+    // const dates = [
+    //   date.getDate(),
+    //   " ",
+    //   date.toLocaleString("default", { month: "long" }),
+    //   " ",
+    //   date.getFullYear(),
+    // ];
 
-  // const [status, setStatus] = React.useState("");
-
-  // const handleChange = (event) => {
-  //   setStatus(event.target.value);
-  // };
-
-    const writeBlog = { ...createBlog,  email: email, date: dates };
-    console.log(email);
-    // setAddCard({ ...addCard, id: id, email: email, date: dates });
-    createBlog(writeBlog);
+    
     toastNewBlog("New Blog successfully added.");
     navigate("/");
     setCreateBlog({});
@@ -131,7 +121,7 @@ const NewBlog = () => {
             sx={{
               m: 1,
             }}
-            name="text"
+            name="content"
             onChange={handleChange}
             value={createBlog.content}
           />
