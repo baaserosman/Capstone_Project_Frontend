@@ -3,7 +3,9 @@ import React, { createContext, useState } from "react";
 export const CardContext = createContext();
 
 export const BlogContext = createContext();
+
 export const initialValues = {
+  
   title: "",
   content: "",
   image: "",
@@ -15,11 +17,11 @@ const BlogContextProvider = ({ children }) => {
   const [blogs, setBlogs] = useState();
 
   return (
-    <CardContext.Provider
+    <BlogContext.Provider
       value={{ blogs, setBlogs, createBlog, setCreateBlog }}
     >
       {children}
-    </CardContext.Provider>
+    </BlogContext.Provider>
   );
 };
 export default BlogContextProvider;
