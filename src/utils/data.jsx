@@ -44,7 +44,7 @@ fetch(
 //*  ////////////////////////////
 //! ******* LOGIN *******
 //*  ////////////////////////////
-export const signIn =(username,password, setCurrentUser) => {
+export const signIn =(username, password, setCurrentUser) => {
   var myHeaders = new Headers();
  
   myHeaders.append("Content-Type", "application/json");
@@ -52,8 +52,7 @@ export const signIn =(username,password, setCurrentUser) => {
   var raw = JSON.stringify({
     username: username,
     // email: "user@example.com",
-    password: password,
-  
+    password: password,  
   });
 
   var requestOptions = {
@@ -76,7 +75,7 @@ export const signIn =(username,password, setCurrentUser) => {
 //*  ////////////////////////////
 //! ******* USER *******
 //*  ////////////////////////////
-export const userStateChecker = (setCurrentUser, token) => {
+export const userStateChecker = (setCurrentUser,  token) => {
 
   var myHeaders = new Headers();
   var token = sessionStorage.getItem("token");
@@ -87,7 +86,6 @@ export const userStateChecker = (setCurrentUser, token) => {
   );
  
   var raw = "";
-
   var requestOptions = {
     method: "GET",
     headers: myHeaders,
@@ -100,13 +98,40 @@ export const userStateChecker = (setCurrentUser, token) => {
     requestOptions
   )
     .then((response) => response.text())
-    .then((result) =>
-      result.id ? setCurrentUser(result) : setCurrentUser(false)
-    )
+    .then((result) =>{result.id ? setCurrentUser(result) : setCurrentUser(false) ; sessionStorage.setItem("user", result);})
     .catch((error) => console.log("error", error));
-    
 };
 
+//*  ////////////////////////////
+//! ******* PROFILE *******
+//*  ////////////////////////////
+
+export const profile = (setCurrentUserProfile, user) => {
+
+var user = sessionStorage.getItem("user");
+var myHeaders = new Headers();
+myHeaders.append(
+  "Cookie",
+  "csrftoken=J7M7DWOplWWCgQMrWaPJlgJEd3VOVG2L9gBNi65IjgrM0ec3tI67A9LmY8W2kUtQ; sessionid=xz1hcmhwi5h1fnrbq7h7i8j6q2qsx20x"
+);
+
+var raw = "";
+
+var requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow",
+};
+
+fetch(
+  `https://tranquil-brook-25431.herokuapp.com/users/profile/${user}`,
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => setCurrentUserProfile(result))
+  .catch((error) => console.log("error", error));
+}
 //*  ////////////////////////////
 //! ******* LOGOUT *******
 //*  ////////////////////////////
@@ -166,7 +191,7 @@ export const useFetch = () => {
 //! ******* WRITE  ******
 //*  ////////////////////////////
 
-export const createBlog = (title, content, image, status, setCreateBlog) => {
+export const createBlog = (title, content, image, status, createBlog, setCreateBlog) => {
   var myHeaders = new Headers();
   var token = sessionStorage.getItem("token");
   myHeaders.append("Authorization", `Token ${token.key}`);
