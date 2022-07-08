@@ -98,7 +98,7 @@ export const userStateChecker = (setCurrentUser,  token) => {
     requestOptions
   )
     .then((response) => response.text())
-    .then((result) =>{result.id ? setCurrentUser(result) : setCurrentUser(false) ; sessionStorage.setItem("user", result);})
+    .then((result) => sessionStorage.setItem("user", result))
     .catch((error) => console.log("error", error));
 };
 
@@ -125,7 +125,7 @@ var requestOptions = {
 };
 
 fetch(
-  `https://tranquil-brook-25431.herokuapp.com/users/profile/${user}`,
+  `https://tranquil-brook-25431.herokuapp.com/users/profile/${user.id}`,
   requestOptions
 )
   .then((response) => response.text())

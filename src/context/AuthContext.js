@@ -15,10 +15,10 @@ const AuthContextProvider = ({ children }) => {
     token ? setCurrentUser(true) : setCurrentUser(false);
   }, [currentUser]);
 
-  useEffect(() => {
-    var user = sessionStorage.getItem("user");
-    user ? setCurrentUserProfile(user) : setCurrentUser(false);
-  })
+  // useEffect(() => {
+  //   var user = sessionStorage.getItem("user");
+  //   token ? setCurrentUserProfile(user) : setCurrentUserProfile(false);
+  // })
 
   return (
     <AuthContext.Provider
